@@ -7,12 +7,35 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CF1CC31421CC4EBC0082F5C6 /* PlayerControls.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CFA655BE21CBEB4F00CB70B9 /* PlayerControls.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		CFA655C821CBEB4F00CB70B9 /* PlayerControls.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFA655BE21CBEB4F00CB70B9 /* PlayerControls.framework */; };
 		CFA655CD21CBEB4F00CB70B9 /* PlayerControlsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA655CC21CBEB4F00CB70B9 /* PlayerControlsTests.swift */; };
 		CFA655CF21CBEB4F00CB70B9 /* PlayerControls.h in Headers */ = {isa = PBXBuildFile; fileRef = CFA655C121CBEB4F00CB70B9 /* PlayerControls.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CFA655D921CBF35300CB70B9 /* PlayerControlDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA655D821CBF35300CB70B9 /* PlayerControlDelegate.swift */; };
+		CFA655DB21CBF36F00CB70B9 /* PlayerControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA655DA21CBF36F00CB70B9 /* PlayerControl.swift */; };
+		CFA655DD21CBF3FD00CB70B9 /* PlayerControlButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA655DC21CBF3FD00CB70B9 /* PlayerControlButton.swift */; };
+		CFA655DF21CBF42300CB70B9 /* PlayerSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA655DE21CBF42300CB70B9 /* PlayerSlider.swift */; };
+		CFA655E121CBF44A00CB70B9 /* PlayerSliderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA655E021CBF44A00CB70B9 /* PlayerSliderCell.swift */; };
+		CFA655E321CBF47300CB70B9 /* NSBezierPath+cgPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA655E221CBF47300CB70B9 /* NSBezierPath+cgPath.swift */; };
+		CFA655E521CBF48800CB70B9 /* NSRect+Center.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA655E421CBF48800CB70B9 /* NSRect+Center.swift */; };
+		CFA655E721CBF4E100CB70B9 /* TimeInterval+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA655E621CBF4E100CB70B9 /* TimeInterval+String.swift */; };
+		CFA655EB21CC051000CB70B9 /* PlayerControlTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA655EA21CC051000CB70B9 /* PlayerControlTheme.swift */; };
+		CFA655ED21CC080C00CB70B9 /* Dark.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA655EC21CC080C00CB70B9 /* Dark.swift */; };
+		CFA655F521CC142900CB70B9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA655F421CC142900CB70B9 /* AppDelegate.swift */; };
+		CFA655F721CC142900CB70B9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA655F621CC142900CB70B9 /* ViewController.swift */; };
+		CFA655F921CC142A00CB70B9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CFA655F821CC142A00CB70B9 /* Assets.xcassets */; };
+		CFA655FC21CC142A00CB70B9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CFA655FA21CC142A00CB70B9 /* Main.storyboard */; };
+		CFA6560321CC14CE00CB70B9 /* PlayerControls.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFA655BE21CBEB4F00CB70B9 /* PlayerControls.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		CF1CC31521CC4EBC0082F5C6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CFA655B521CBEB4F00CB70B9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CFA655BD21CBEB4F00CB70B9;
+			remoteInfo = PlayerControls;
+		};
 		CFA655C921CBEB4F00CB70B9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = CFA655B521CBEB4F00CB70B9 /* Project object */;
@@ -22,6 +45,20 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		CF1CC31721CC4EBC0082F5C6 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				CF1CC31421CC4EBC0082F5C6 /* PlayerControls.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		CFA655BE21CBEB4F00CB70B9 /* PlayerControls.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PlayerControls.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFA655C121CBEB4F00CB70B9 /* PlayerControls.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlayerControls.h; sourceTree = "<group>"; };
@@ -29,6 +66,23 @@
 		CFA655C721CBEB4F00CB70B9 /* PlayerControlsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PlayerControlsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFA655CC21CBEB4F00CB70B9 /* PlayerControlsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerControlsTests.swift; sourceTree = "<group>"; };
 		CFA655CE21CBEB4F00CB70B9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CFA655D821CBF35300CB70B9 /* PlayerControlDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerControlDelegate.swift; sourceTree = "<group>"; };
+		CFA655DA21CBF36F00CB70B9 /* PlayerControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerControl.swift; sourceTree = "<group>"; };
+		CFA655DC21CBF3FD00CB70B9 /* PlayerControlButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerControlButton.swift; sourceTree = "<group>"; };
+		CFA655DE21CBF42300CB70B9 /* PlayerSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerSlider.swift; sourceTree = "<group>"; };
+		CFA655E021CBF44A00CB70B9 /* PlayerSliderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerSliderCell.swift; sourceTree = "<group>"; };
+		CFA655E221CBF47300CB70B9 /* NSBezierPath+cgPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSBezierPath+cgPath.swift"; sourceTree = "<group>"; };
+		CFA655E421CBF48800CB70B9 /* NSRect+Center.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSRect+Center.swift"; sourceTree = "<group>"; };
+		CFA655E621CBF4E100CB70B9 /* TimeInterval+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimeInterval+String.swift"; sourceTree = "<group>"; };
+		CFA655EA21CC051000CB70B9 /* PlayerControlTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerControlTheme.swift; sourceTree = "<group>"; };
+		CFA655EC21CC080C00CB70B9 /* Dark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dark.swift; sourceTree = "<group>"; };
+		CFA655F221CC142900CB70B9 /* PlayerControlsDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PlayerControlsDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CFA655F421CC142900CB70B9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		CFA655F621CC142900CB70B9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		CFA655F821CC142A00CB70B9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		CFA655FB21CC142A00CB70B9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		CFA655FD21CC142A00CB70B9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CFA655FE21CC142A00CB70B9 /* PlayerControlsDemo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PlayerControlsDemo.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +101,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		CFA655EF21CC142900CB70B9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CFA6560321CC14CE00CB70B9 /* PlayerControls.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -55,7 +117,9 @@
 			children = (
 				CFA655C021CBEB4F00CB70B9 /* PlayerControls */,
 				CFA655CB21CBEB4F00CB70B9 /* PlayerControlsTests */,
+				CFA655F321CC142900CB70B9 /* PlayerControlsDemo */,
 				CFA655BF21CBEB4F00CB70B9 /* Products */,
+				CFA6560221CC14CE00CB70B9 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -64,6 +128,7 @@
 			children = (
 				CFA655BE21CBEB4F00CB70B9 /* PlayerControls.framework */,
 				CFA655C721CBEB4F00CB70B9 /* PlayerControlsTests.xctest */,
+				CFA655F221CC142900CB70B9 /* PlayerControlsDemo.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -71,8 +136,17 @@
 		CFA655C021CBEB4F00CB70B9 /* PlayerControls */ = {
 			isa = PBXGroup;
 			children = (
+				CFA655E921CC04F700CB70B9 /* Themes */,
 				CFA655C121CBEB4F00CB70B9 /* PlayerControls.h */,
 				CFA655C221CBEB4F00CB70B9 /* Info.plist */,
+				CFA655D821CBF35300CB70B9 /* PlayerControlDelegate.swift */,
+				CFA655DA21CBF36F00CB70B9 /* PlayerControl.swift */,
+				CFA655DC21CBF3FD00CB70B9 /* PlayerControlButton.swift */,
+				CFA655DE21CBF42300CB70B9 /* PlayerSlider.swift */,
+				CFA655E021CBF44A00CB70B9 /* PlayerSliderCell.swift */,
+				CFA655E221CBF47300CB70B9 /* NSBezierPath+cgPath.swift */,
+				CFA655E421CBF48800CB70B9 /* NSRect+Center.swift */,
+				CFA655E621CBF4E100CB70B9 /* TimeInterval+String.swift */,
 			);
 			path = PlayerControls;
 			sourceTree = "<group>";
@@ -84,6 +158,35 @@
 				CFA655CE21CBEB4F00CB70B9 /* Info.plist */,
 			);
 			path = PlayerControlsTests;
+			sourceTree = "<group>";
+		};
+		CFA655E921CC04F700CB70B9 /* Themes */ = {
+			isa = PBXGroup;
+			children = (
+				CFA655EA21CC051000CB70B9 /* PlayerControlTheme.swift */,
+				CFA655EC21CC080C00CB70B9 /* Dark.swift */,
+			);
+			path = Themes;
+			sourceTree = "<group>";
+		};
+		CFA655F321CC142900CB70B9 /* PlayerControlsDemo */ = {
+			isa = PBXGroup;
+			children = (
+				CFA655F421CC142900CB70B9 /* AppDelegate.swift */,
+				CFA655F621CC142900CB70B9 /* ViewController.swift */,
+				CFA655F821CC142A00CB70B9 /* Assets.xcassets */,
+				CFA655FA21CC142A00CB70B9 /* Main.storyboard */,
+				CFA655FD21CC142A00CB70B9 /* Info.plist */,
+				CFA655FE21CC142A00CB70B9 /* PlayerControlsDemo.entitlements */,
+			);
+			path = PlayerControlsDemo;
+			sourceTree = "<group>";
+		};
+		CFA6560221CC14CE00CB70B9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -136,6 +239,25 @@
 			productReference = CFA655C721CBEB4F00CB70B9 /* PlayerControlsTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		CFA655F121CC142900CB70B9 /* PlayerControlsDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CFA655FF21CC142A00CB70B9 /* Build configuration list for PBXNativeTarget "PlayerControlsDemo" */;
+			buildPhases = (
+				CFA655EE21CC142900CB70B9 /* Sources */,
+				CFA655EF21CC142900CB70B9 /* Frameworks */,
+				CFA655F021CC142900CB70B9 /* Resources */,
+				CF1CC31721CC4EBC0082F5C6 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CF1CC31621CC4EBC0082F5C6 /* PBXTargetDependency */,
+			);
+			name = PlayerControlsDemo;
+			productName = PlayerControlsDemo;
+			productReference = CFA655F221CC142900CB70B9 /* PlayerControlsDemo.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -148,8 +270,12 @@
 				TargetAttributes = {
 					CFA655BD21CBEB4F00CB70B9 = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1010;
 					};
 					CFA655C621CBEB4F00CB70B9 = {
+						CreatedOnToolsVersion = 10.1;
+					};
+					CFA655F121CC142900CB70B9 = {
 						CreatedOnToolsVersion = 10.1;
 					};
 				};
@@ -160,6 +286,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = CFA655B421CBEB4F00CB70B9;
 			productRefGroup = CFA655BF21CBEB4F00CB70B9 /* Products */;
@@ -168,6 +295,7 @@
 			targets = (
 				CFA655BD21CBEB4F00CB70B9 /* PlayerControls */,
 				CFA655C621CBEB4F00CB70B9 /* PlayerControlsTests */,
+				CFA655F121CC142900CB70B9 /* PlayerControlsDemo */,
 			);
 		};
 /* End PBXProject section */
@@ -187,6 +315,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		CFA655F021CC142900CB70B9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CFA655F921CC142A00CB70B9 /* Assets.xcassets in Resources */,
+				CFA655FC21CC142A00CB70B9 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -194,6 +331,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CFA655DB21CBF36F00CB70B9 /* PlayerControl.swift in Sources */,
+				CFA655ED21CC080C00CB70B9 /* Dark.swift in Sources */,
+				CFA655EB21CC051000CB70B9 /* PlayerControlTheme.swift in Sources */,
+				CFA655E521CBF48800CB70B9 /* NSRect+Center.swift in Sources */,
+				CFA655E721CBF4E100CB70B9 /* TimeInterval+String.swift in Sources */,
+				CFA655E321CBF47300CB70B9 /* NSBezierPath+cgPath.swift in Sources */,
+				CFA655DF21CBF42300CB70B9 /* PlayerSlider.swift in Sources */,
+				CFA655E121CBF44A00CB70B9 /* PlayerSliderCell.swift in Sources */,
+				CFA655DD21CBF3FD00CB70B9 /* PlayerControlButton.swift in Sources */,
+				CFA655D921CBF35300CB70B9 /* PlayerControlDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -205,15 +352,40 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		CFA655EE21CC142900CB70B9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CFA655F721CC142900CB70B9 /* ViewController.swift in Sources */,
+				CFA655F521CC142900CB70B9 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		CF1CC31621CC4EBC0082F5C6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CFA655BD21CBEB4F00CB70B9 /* PlayerControls */;
+			targetProxy = CF1CC31521CC4EBC0082F5C6 /* PBXContainerItemProxy */;
+		};
 		CFA655CA21CBEB4F00CB70B9 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = CFA655BD21CBEB4F00CB70B9 /* PlayerControls */;
 			targetProxy = CFA655C921CBEB4F00CB70B9 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		CFA655FA21CC142A00CB70B9 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CFA655FB21CC142A00CB70B9 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		CFA655D021CBEB4F00CB70B9 /* Debug */ = {
@@ -340,11 +512,11 @@
 		CFA655D321CBEB5000CB70B9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = Y2YP4K2ER2;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -359,6 +531,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.frobaus.PlayerControls;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
 			};
 			name = Debug;
@@ -366,11 +539,11 @@
 		CFA655D421CBEB5000CB70B9 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = Y2YP4K2ER2;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -392,6 +565,7 @@
 		CFA655D621CBEB5000CB70B9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = Y2YP4K2ER2;
@@ -410,6 +584,7 @@
 		CFA655D721CBEB5000CB70B9 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = Y2YP4K2ER2;
@@ -420,6 +595,46 @@
 					"@loader_path/../Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.frobaus.PlayerControlsTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+			};
+			name = Release;
+		};
+		CFA6560021CC142A00CB70B9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = PlayerControlsDemo/PlayerControlsDemo.entitlements;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = PlayerControlsDemo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.frobaus.PlayerControlsDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+			};
+			name = Debug;
+		};
+		CFA6560121CC142A00CB70B9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = PlayerControlsDemo/PlayerControlsDemo.entitlements;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = PlayerControlsDemo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.frobaus.PlayerControlsDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 			};
@@ -451,6 +666,15 @@
 			buildConfigurations = (
 				CFA655D621CBEB5000CB70B9 /* Debug */,
 				CFA655D721CBEB5000CB70B9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CFA655FF21CC142A00CB70B9 /* Build configuration list for PBXNativeTarget "PlayerControlsDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CFA6560021CC142A00CB70B9 /* Debug */,
+				CFA6560121CC142A00CB70B9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

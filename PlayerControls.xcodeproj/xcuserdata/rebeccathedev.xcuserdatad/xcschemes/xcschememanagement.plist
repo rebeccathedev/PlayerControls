@@ -9,6 +9,29 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>PlayerControlsDemo.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>CFA655BD21CBEB4F00CB70B9</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>CFA655C621CBEB4F00CB70B9</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>CFA655F121CC142900CB70B9</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 	</dict>
 </dict>
 </plist>
