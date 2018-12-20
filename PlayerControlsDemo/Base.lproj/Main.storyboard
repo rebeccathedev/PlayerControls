@@ -731,11 +731,11 @@
                             <box title="Demo Settings" translatesAutoresizingMaskIntoConstraints="NO" id="8Ve-Of-zxK">
                                 <rect key="frame" x="17" y="134" width="751" height="114"/>
                                 <view key="contentView" id="zak-pw-OPj">
-                                    <rect key="frame" x="2" y="2" width="747" height="97"/>
+                                    <rect key="frame" x="3" y="3" width="745" height="96"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="oUV-Y7-03R">
-                                            <rect key="frame" x="18" y="60" width="114" height="17"/>
+                                            <rect key="frame" x="18" y="59" width="114" height="17"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="110" id="7zX-P5-aMw"/>
                                                 <constraint firstAttribute="height" constant="17" id="KhA-hn-lVD"/>
@@ -747,7 +747,7 @@
                                             </textFieldCell>
                                         </textField>
                                         <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="ZBS-cd-nom">
-                                            <rect key="frame" x="138" y="57" width="44" height="23"/>
+                                            <rect key="frame" x="138" y="57" width="44" height="22"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="44" id="2gH-yA-KuO"/>
                                             </constraints>
@@ -761,7 +761,7 @@
                                             </connections>
                                         </colorWell>
                                         <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="chN-yG-N1i">
-                                            <rect key="frame" x="190" y="57" width="537" height="22"/>
+                                            <rect key="frame" x="190" y="57" width="535" height="22"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="yT9-KF-F37">
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -787,7 +787,7 @@
                             <box title="PlayerControls Settings" translatesAutoresizingMaskIntoConstraints="NO" id="rmV-ju-uYN">
                                 <rect key="frame" x="17" y="252" width="751" height="139"/>
                                 <view key="contentView" id="OJh-At-SF8">
-                                    <rect key="frame" x="2" y="2" width="747" height="122"/>
+                                    <rect key="frame" x="3" y="3" width="745" height="121"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7sF-c4-B3K">
@@ -800,7 +800,7 @@
                                             </textFieldCell>
                                         </textField>
                                         <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pGN-Sm-gYA">
-                                            <rect key="frame" x="121" y="80" width="76" height="26"/>
+                                            <rect key="frame" x="121" y="79" width="76" height="26"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <popUpButtonCell key="cell" type="push" title="Light" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="scw-wL-PXD" id="JwV-pp-7QE">
                                                 <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
@@ -823,7 +823,7 @@
                                             </textFieldCell>
                                         </textField>
                                         <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ejI-X2-irl">
-                                            <rect key="frame" x="123" y="53" width="96" height="22"/>
+                                            <rect key="frame" x="123" y="52" width="96" height="22"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="6bc-CV-Nt3">
                                                 <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="fUv-Is-j6h">
@@ -835,7 +835,7 @@
                                             </textFieldCell>
                                         </textField>
                                         <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WDc-Cn-gHc">
-                                            <rect key="frame" x="123" y="21" width="96" height="22"/>
+                                            <rect key="frame" x="123" y="20" width="96" height="22"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="XmE-Zv-PLy">
                                                 <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="JY2-81-vBJ"/>
@@ -854,9 +854,16 @@
                                             </textFieldCell>
                                         </textField>
                                         <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DhL-dt-0gS">
-                                            <rect key="frame" x="401" y="84" width="96" height="19"/>
+                                            <rect key="frame" x="401" y="83" width="96" height="19"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <sliderCell key="cell" state="on" alignment="left" maxValue="100" doubleValue="1" tickMarkPosition="above" sliderType="linear" id="bjA-VR-Fe0"/>
+                                            <connections>
+                                                <binding destination="XfG-lQ-9wD" name="value" keyPath="self.tranferred" id="uyb-iR-N41">
+                                                    <dictionary key="options">
+                                                        <bool key="NSValidatesImmediately" value="YES"/>
+                                                    </dictionary>
+                                                </binding>
+                                            </connections>
                                         </slider>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0Pu-5V-9YS">
                                             <rect key="frame" x="18" y="23" width="88" height="17"/>

@@ -10,6 +10,14 @@ import Foundation
 
 
 class PlayerSlider: NSSlider {
+    public var transferred: CGFloat = 0 {
+        didSet {
+            guard let cl = self.cell as? PlayerSliderCell else { return }
+            cl.transferred = self.transferred
+            self.needsDisplay = true
+        }
+    }
+    
     override init(frame frameRect: NSRect) {
         super.init(frame: frameRect)
         self.cell = PlayerSliderCell()

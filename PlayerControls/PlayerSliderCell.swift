@@ -10,6 +10,8 @@ import Foundation
 
 class PlayerSliderCell: NSSliderCell {
     
+    public var transferred: CGFloat = 0
+    
     override func drawKnob(_ knobRect: NSRect) {
         guard let ctx = NSGraphicsContext.current?.cgContext else { return }
         var newRect = knobRect
@@ -33,7 +35,7 @@ class PlayerSliderCell: NSSliderCell {
         ctx.fillPath()
         
         var completedRect = fullRect
-        completedRect.size.width = fullRect.size.width * CGFloat(self.floatValue)
+        completedRect.size.width = fullRect.size.width * self.transferred
         ctx.setFillColor(NSColor.white.cgColor)
         ctx.addRect(completedRect)
         ctx.fillPath()

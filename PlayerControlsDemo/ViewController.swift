@@ -16,6 +16,12 @@ class ViewController: NSViewController {
             self.containerLayer.layer?.backgroundColor = self.viewBackgroundColor.cgColor
         }
     }
+    
+    @objc var tranferred: CGFloat = 0 {
+        didSet {
+            self.playerControl.transferred = self.tranferred / 100
+        }
+    }
 
     @IBOutlet weak var containerLayer: NSView!
     @IBOutlet weak var playerControl: PlayerControl!
