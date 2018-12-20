@@ -43,7 +43,11 @@ public class PlayerControl: NSVisualEffectView {
     /// If you are using download percentage in the slider, this
     /// adjusts how much you show as downloaded. Expressed as a
     /// CGFloat percentage between 0.0 and 1.0.
-    public var transferred: CGFloat = 0
+    public var transferred: CGFloat = 0 {
+        didSet {
+            self.slider.transferred = self.transferred
+        }
+    }
     
     /// If enabled, when the used mouses over the player the player
     /// is shown, and when the mouse leaves the bounds the player is
