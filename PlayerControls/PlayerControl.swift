@@ -65,7 +65,11 @@ public class PlayerControl: NSVisualEffectView {
         }
     }
     
-    public var theme: PlayerControlTheme = Dark()
+    public var theme: PlayerControlTheme = Dark() {
+        didSet {
+            self.setTheme()
+        }
+    }
     
     @IBInspectable public var iconSize = CGSize(width: 100, height: 100)
     
@@ -92,8 +96,8 @@ public class PlayerControl: NSVisualEffectView {
     }
     
     private var slider: PlayerSlider!
-    private var remainingTimeLabel: NSTextField!
-    private var currentTimeLabel: NSTextField!
+    private var remainingTimeLabel: PlayerLabel!
+    private var currentTimeLabel: PlayerLabel!
     
     private var playButton: PlayerControlButton!
     private var rewindButton: PlayerControlButton!
@@ -103,8 +107,6 @@ public class PlayerControl: NSVisualEffectView {
     
     /// Sets up the control
     override public func awakeFromNib() {
-        self.blendingMode = self.theme.blendingMode
-        self.material = self.theme.material
         self.wantsLayer = true
         self.layer?.cornerRadius = 5
         self.layer?.masksToBounds = true
@@ -116,6 +118,7 @@ public class PlayerControl: NSVisualEffectView {
         self.createJumpButtons()
         self.createLabels()
         self.createStacks()
+        self.setTheme()
         
         NotificationCenter.default.addObserver(forName: NSView.frameDidChangeNotification, object: self, queue: nil) { (notificiation) in
             for tracking in self.trackingAreas {
@@ -187,8 +190,8 @@ public class PlayerControl: NSVisualEffectView {
     }
     
     func createLabels() {
-        func createLabel() -> NSTextField {
-            let obj = NSTextField()
+        func createLabel() -> PlayerLabel {
+            let obj = PlayerLabel()
             obj.isEditable = false
             obj.stringValue = "00:00:00"
             obj.textColor = .white
@@ -236,6 +239,20 @@ public class PlayerControl: NSVisualEffectView {
         controlStack.addArrangedSubview(self.remainingTimeLabel)
         controlStack.addArrangedSubview(self.jumpForwardButton)
         controlStack.addArrangedSubview(self.fastFowardButton)
+    }
+    
+    func setTheme() {
+        self.blendingMode = self.theme.blendingMode
+        self.material = self.theme.material
+        self.playButton.theme = self.theme
+        self.rewindButton.theme = self.theme
+        self.fastFowardButton.theme = self.theme
+        self.jumpBackButton.theme = self.theme
+        self.jumpForwardButton.theme = self.theme
+        self.slider.theme = self.theme
+        self.currentTimeLabel.theme = self.theme
+        self.remainingTimeLabel.theme = self.theme
+        
     }
     
     @objc func playButtonClicked() {

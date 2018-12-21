@@ -30,16 +30,16 @@ class ViewController: NSViewController {
         super.viewDidLoad()
         self.containerLayer.wantsLayer = true
         self.containerLayer.layer?.backgroundColor = self.viewBackgroundColor.cgColor
-
-        // Do any additional setup after loading the view.
     }
-
-    override var representedObject: Any? {
-        didSet {
-        // Update the view, if already loaded.
+    
+    @IBAction func themeChanged(_ sender: Any?) {
+        if let button = sender as? NSPopUpButton {
+            if button.selectedTag() == 0 {
+                self.playerControl.theme = Dark()
+            } else {
+                self.playerControl.theme = Light()
+            }
         }
     }
-
-
 }
 

@@ -802,16 +802,19 @@
                                         <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pGN-Sm-gYA">
                                             <rect key="frame" x="121" y="79" width="76" height="26"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <popUpButtonCell key="cell" type="push" title="Light" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="scw-wL-PXD" id="JwV-pp-7QE">
+                                            <popUpButtonCell key="cell" type="push" title="Dark" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="scw-wL-PXD" id="JwV-pp-7QE">
                                                 <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                                 <font key="font" metaFont="menu"/>
                                                 <menu key="menu" id="adA-hO-Rjh">
                                                     <items>
-                                                        <menuItem title="Light" state="on" id="scw-wL-PXD"/>
-                                                        <menuItem title="Dark" id="vpK-nV-kKc"/>
+                                                        <menuItem title="Dark" state="on" id="scw-wL-PXD"/>
+                                                        <menuItem title="Light" tag="1" id="vpK-nV-kKc"/>
                                                     </items>
                                                 </menu>
                                             </popUpButtonCell>
+                                            <connections>
+                                                <action selector="themeChanged:" target="XfG-lQ-9wD" id="lVO-Sx-Ono"/>
+                                            </connections>
                                         </popUpButton>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="My0-Hj-fXm">
                                             <rect key="frame" x="18" y="55" width="71" height="17"/>
