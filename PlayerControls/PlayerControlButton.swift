@@ -10,15 +10,17 @@ import Foundation
 import Cocoa
 
 class PlayerControlButton: NSButton {
-    var theme: PlayerControlTheme?
+    var theme: PlayerControlTheme = Dark() {
+        didSet {
+            self.setNeedsDisplay()
+        }
+    }
     
     override var focusRingType: NSFocusRingType {
         get {
             return .none
         }
-        set {
-            
-        }
+        set {}
     }
     
     override func draw(_ dirtyRect: NSRect) {
@@ -26,8 +28,8 @@ class PlayerControlButton: NSButton {
         
         // Create a rounded rect and fill it.
         let path = NSBezierPath(roundedRect: dirtyRect, xRadius: 5, yRadius: 5)
-        ctx.setFillColor(NSColor.black.cgColor)
-        ctx.setAlpha(0.5)
+        ctx.setFillColor(self.theme.buttonColor.cgColor)
+        ctx.setAlpha(self.theme.buttonAlpha)
         ctx.addPath(path.cgPath)
         ctx.fillPath()
         

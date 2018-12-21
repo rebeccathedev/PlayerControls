@@ -1,5 +1,5 @@
 //
-//  Dark.swift
+//  Light.swift
 //  PlayerControls
 //
 //  Created by Rob Peck on 12/20/18.
@@ -8,20 +8,20 @@
 
 import Foundation
 
-public struct Dark: PlayerControlTheme {
+public struct Light: PlayerControlTheme {
     public var blendingMode: NSVisualEffectView.BlendingMode = .withinWindow
     
-    public var material: NSVisualEffectView.Material = .dark
+    public var material: NSVisualEffectView.Material = .light
     
-    public var buttonColor: NSColor = .black
+    public var buttonColor: NSColor = .white
     
     public var buttonAlpha: CGFloat = 0.5
     
     public var labelTextColor: NSColor = .white
     
-    public var sliderKnobColor: NSColor = .gray
+    public var sliderKnobColor: NSColor = .lightGray
     
-    public var sliderBarColor: NSColor = .black
+    public var sliderBarColor: NSColor = .gray
     
     public var sliderBarDownloadColor: NSColor = .white
     

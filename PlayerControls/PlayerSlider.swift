@@ -18,6 +18,14 @@ class PlayerSlider: NSSlider {
         }
     }
     
+    public var theme: PlayerControlTheme = Dark() {
+        didSet {
+            guard let cl = self.cell as? PlayerSliderCell else { return }
+            cl.theme  = self.theme
+            self.needsDisplay = true
+        }
+    }
+    
     override init(frame frameRect: NSRect) {
         super.init(frame: frameRect)
         self.cell = PlayerSliderCell()

@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		CF1CC31421CC4EBC0082F5C6 /* PlayerControls.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CFA655BE21CBEB4F00CB70B9 /* PlayerControls.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		CF34B17F21CC8F2D00D3CD72 /* PlayerLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF34B17E21CC8F2D00D3CD72 /* PlayerLabel.swift */; };
+		CF34B18121CC90CE00D3CD72 /* Light.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF34B18021CC90CE00D3CD72 /* Light.swift */; };
 		CFA655C821CBEB4F00CB70B9 /* PlayerControls.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFA655BE21CBEB4F00CB70B9 /* PlayerControls.framework */; };
 		CFA655CD21CBEB4F00CB70B9 /* PlayerControlsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA655CC21CBEB4F00CB70B9 /* PlayerControlsTests.swift */; };
 		CFA655CF21CBEB4F00CB70B9 /* PlayerControls.h in Headers */ = {isa = PBXBuildFile; fileRef = CFA655C121CBEB4F00CB70B9 /* PlayerControls.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -60,6 +62,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		CF34B17E21CC8F2D00D3CD72 /* PlayerLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerLabel.swift; sourceTree = "<group>"; };
+		CF34B18021CC90CE00D3CD72 /* Light.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Light.swift; sourceTree = "<group>"; };
 		CFA655BE21CBEB4F00CB70B9 /* PlayerControls.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PlayerControls.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFA655C121CBEB4F00CB70B9 /* PlayerControls.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlayerControls.h; sourceTree = "<group>"; };
 		CFA655C221CBEB4F00CB70B9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -147,6 +151,7 @@
 				CFA655E221CBF47300CB70B9 /* NSBezierPath+cgPath.swift */,
 				CFA655E421CBF48800CB70B9 /* NSRect+Center.swift */,
 				CFA655E621CBF4E100CB70B9 /* TimeInterval+String.swift */,
+				CF34B17E21CC8F2D00D3CD72 /* PlayerLabel.swift */,
 			);
 			path = PlayerControls;
 			sourceTree = "<group>";
@@ -165,6 +170,7 @@
 			children = (
 				CFA655EA21CC051000CB70B9 /* PlayerControlTheme.swift */,
 				CFA655EC21CC080C00CB70B9 /* Dark.swift */,
+				CF34B18021CC90CE00D3CD72 /* Light.swift */,
 			);
 			path = Themes;
 			sourceTree = "<group>";
@@ -332,10 +338,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				CFA655DB21CBF36F00CB70B9 /* PlayerControl.swift in Sources */,
+				CF34B17F21CC8F2D00D3CD72 /* PlayerLabel.swift in Sources */,
 				CFA655ED21CC080C00CB70B9 /* Dark.swift in Sources */,
 				CFA655EB21CC051000CB70B9 /* PlayerControlTheme.swift in Sources */,
 				CFA655E521CBF48800CB70B9 /* NSRect+Center.swift in Sources */,
 				CFA655E721CBF4E100CB70B9 /* TimeInterval+String.swift in Sources */,
+				CF34B18121CC90CE00D3CD72 /* Light.swift in Sources */,
 				CFA655E321CBF47300CB70B9 /* NSBezierPath+cgPath.swift in Sources */,
 				CFA655DF21CBF42300CB70B9 /* PlayerSlider.swift in Sources */,
 				CFA655E121CBF44A00CB70B9 /* PlayerSliderCell.swift in Sources */,

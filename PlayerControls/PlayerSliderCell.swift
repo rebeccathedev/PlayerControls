@@ -11,6 +11,7 @@ import Foundation
 class PlayerSliderCell: NSSliderCell {
     
     public var transferred: CGFloat = 0
+    public var theme: PlayerControlTheme = Dark()
     
     override func drawKnob(_ knobRect: NSRect) {
         guard let ctx = NSGraphicsContext.current?.cgContext else { return }
@@ -19,7 +20,7 @@ class PlayerSliderCell: NSSliderCell {
         newRect.size.height = newRect.size.height * (2/3)
         newRect.center(in: knobRect)
         
-        ctx.setFillColor(NSColor.gray.cgColor)
+        ctx.setFillColor(self.theme.sliderKnobColor.cgColor)
         ctx.addRect(newRect)
         ctx.fillPath()
     }
@@ -29,14 +30,14 @@ class PlayerSliderCell: NSSliderCell {
         
         var fullRect = rect
         fullRect.size.height = 3
-        ctx.setFillColor(NSColor.black.cgColor)
-        ctx.setAlpha(0.5)
+        ctx.setFillColor(self.theme.sliderBarColor.cgColor)
+        ctx.setAlpha(self.theme.sliderBarAlpha)
         ctx.addRect(fullRect)
         ctx.fillPath()
         
         var completedRect = fullRect
         completedRect.size.width = fullRect.size.width * self.transferred
-        ctx.setFillColor(NSColor.white.cgColor)
+        ctx.setFillColor(self.theme.sliderBarDownloadColor.cgColor)
         ctx.addRect(completedRect)
         ctx.fillPath()
         
