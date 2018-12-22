@@ -14,23 +14,35 @@ public class PlayerControl: NSVisualEffectView {
     /// Provides a delegate for messages.
     public var delegate: PlayerControlDelegate? = nil
     
-    /// The total time of the media you are playing. This is expressed
-    /// as a TimeInterval type.
+    /// The total time of the media you are playing. This is expressed as a
+    /// TimeInterval type.
     public var totalTime: TimeInterval? = nil {
         didSet {
-            self.slider?.maxValue = self.totalTime!
+            if totalTime! < 0 {
+                self.totalTime = 0
+                return
+            }
+            
+            self.slider?.maxValue = totalTime!
             self.slider?.isEnabled = true
+            self.remainingTimeLabel.stringValue = totalTime!.string()
         }
     }
     
-    /// The current time point in the media. This is expressed as a
-    /// TimeInterval type. Updating this will update labels and the
-    /// slider.
+    /// The current time point in the media. This is expressed as a TimeInterval
+    /// type. Updating this will update labels and the slider.
     public var currentTime: TimeInterval = 0 {
         didSet {
-            self.slider?.doubleValue = self.currentTime
-            self.currentTimeLabel.stringValue = self.currentTime.string()
-            self.remainingTimeLabel.stringValue = (self.totalTime! - self.currentTime).string()
+            guard let tt = self.totalTime else { return }
+            if currentTime < 0 {
+                self.currentTime = 0
+                return
+            }
+            if tt >= currentTime {
+                self.slider?.doubleValue = self.currentTime
+                self.currentTimeLabel.stringValue = self.currentTime.string()
+                self.remainingTimeLabel.stringValue = (tt - self.currentTime).string()
+            }
         }
     }
     
