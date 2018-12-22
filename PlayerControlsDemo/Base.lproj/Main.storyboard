@@ -685,7 +685,7 @@
         <scene sceneID="R2V-B0-nI4">
             <objects>
                 <windowController id="B8D-0N-5wS" sceneMemberID="viewController">
-                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
+                    <window key="window" title="PlayerControls Demo" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="196" y="240" width="480" height="270"/>
@@ -746,7 +746,7 @@
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
-                                        <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="ZBS-cd-nom">
+                                        <colorWell ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZBS-cd-nom">
                                             <rect key="frame" x="138" y="57" width="44" height="22"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="44" id="2gH-yA-KuO"/>
@@ -760,24 +760,30 @@
                                                 </binding>
                                             </connections>
                                         </colorWell>
-                                        <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="chN-yG-N1i">
-                                            <rect key="frame" x="190" y="57" width="535" height="22"/>
-                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="yT9-KF-F37">
+                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Wsv-do-FcZ">
+                                            <rect key="frame" x="85" y="27" width="47" height="17"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" title="Action:" id="OMn-5G-tLb">
                                                 <font key="font" metaFont="system"/>
-                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
+                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qfL-Ym-Lr4">
+                                            <rect key="frame" x="138" y="27" width="589" height="17"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <textFieldCell key="cell" lineBreakMode="clipping" id="W6G-bN-Xwa">
+                                                <font key="font" metaFont="system"/>
+                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="ZBS-cd-nom" firstAttribute="bottom" secondItem="chN-yG-N1i" secondAttribute="bottom" id="5BU-et-Sah"/>
                                         <constraint firstItem="oUV-Y7-03R" firstAttribute="leading" secondItem="zak-pw-OPj" secondAttribute="leading" constant="20" id="Cgy-IP-C8w"/>
                                         <constraint firstItem="oUV-Y7-03R" firstAttribute="top" secondItem="zak-pw-OPj" secondAttribute="top" constant="20" id="GFG-Zi-uNA"/>
                                         <constraint firstItem="ZBS-cd-nom" firstAttribute="centerY" secondItem="oUV-Y7-03R" secondAttribute="centerY" id="IuD-Xg-jpb"/>
-                                        <constraint firstAttribute="trailing" secondItem="chN-yG-N1i" secondAttribute="trailing" constant="20" id="e26-GL-VZ6"/>
                                         <constraint firstItem="ZBS-cd-nom" firstAttribute="leading" secondItem="oUV-Y7-03R" secondAttribute="trailing" constant="8" id="h10-bP-0Zm"/>
-                                        <constraint firstItem="chN-yG-N1i" firstAttribute="leading" secondItem="ZBS-cd-nom" secondAttribute="trailing" constant="8" symbolic="YES" id="jCX-aN-dJM"/>
-                                        <constraint firstItem="ZBS-cd-nom" firstAttribute="centerY" secondItem="chN-yG-N1i" secondAttribute="centerY" id="kRi-19-FtV"/>
                                     </constraints>
                                 </view>
                                 <constraints>
@@ -829,23 +835,46 @@
                                             <rect key="frame" x="123" y="52" width="96" height="22"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="6bc-CV-Nt3">
-                                                <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="fUv-Is-j6h">
+                                                <numberFormatter key="formatter" formatterBehavior="custom10_4" localizesFormat="NO" usesGroupingSeparator="NO" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="fUv-Is-j6h">
                                                     <real key="minimum" value="0.0"/>
                                                 </numberFormatter>
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
+                                            <connections>
+                                                <binding destination="XfG-lQ-9wD" name="value" keyPath="self.totalTime" id="kAf-Oi-gZ2">
+                                                    <dictionary key="options">
+                                                        <bool key="NSContinuouslyUpdatesValue" value="YES"/>
+                                                        <integer key="NSMultipleValuesPlaceholder" value="0"/>
+                                                        <integer key="NSNoSelectionPlaceholder" value="0"/>
+                                                        <integer key="NSNotApplicablePlaceholder" value="0"/>
+                                                        <integer key="NSNullPlaceholder" value="0"/>
+                                                    </dictionary>
+                                                </binding>
+                                            </connections>
                                         </textField>
                                         <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WDc-Cn-gHc">
                                             <rect key="frame" x="123" y="20" width="96" height="22"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="XmE-Zv-PLy">
-                                                <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="JY2-81-vBJ"/>
+                                                <numberFormatter key="formatter" formatterBehavior="custom10_4" numberStyle="decimal" usesGroupingSeparator="NO" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="JY2-81-vBJ"/>
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
+                                            <connections>
+                                                <binding destination="XfG-lQ-9wD" name="value" keyPath="self.currentTime" id="pfN-tm-g09">
+                                                    <dictionary key="options">
+                                                        <bool key="NSContinuouslyUpdatesValue" value="YES"/>
+                                                        <integer key="NSMultipleValuesPlaceholder" value="0"/>
+                                                        <integer key="NSNoSelectionPlaceholder" value="0"/>
+                                                        <integer key="NSNotApplicablePlaceholder" value="0"/>
+                                                        <integer key="NSNullPlaceholder" value="0"/>
+                                                        <bool key="NSValidatesImmediately" value="YES"/>
+                                                    </dictionary>
+                                                </binding>
+                                            </connections>
                                         </textField>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qdY-Va-DXQ">
                                             <rect key="frame" x="298" y="85" width="78" height="17"/>
@@ -900,11 +929,13 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="actionLabel" destination="qfL-Ym-Lr4" id="ovH-JO-lPw"/>
                         <outlet property="containerLayer" destination="hM6-Ll-SSI" id="4iw-C5-wRO"/>
                         <outlet property="playerControl" destination="LN3-xQ-pFG" id="Vin-pe-9yt"/>
                     </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <userDefaultsController representsSharedInstance="YES" id="Z9x-vt-rvL"/>
             </objects>
             <point key="canvasLocation" x="227.5" y="725.5"/>
         </scene>
