@@ -2,7 +2,7 @@
 
 PlayerControls is a macOS Cocoa framework that creates a View containing 
 playback controls for media like videos or sounds. It is written in pure Swift 
-4.
+4 and has no dependencies.
 
 ## Why?
 
@@ -35,6 +35,10 @@ into your project.
 A demonstration app is available in the source code. To use it, download the 
 source, open in Xcode, set the Scheme to PlayerControlsDemo and build. It will
 build the framework as a dependency.
+
+Icons used in the demo are made by [Freepik](https://www.freepik.com/) from 
+[www.flaticon.com](https://www.flaticon.com/) and licensed by 
+[CC 3.0 BY](http://creativecommons.org/licenses/by/3.0/).
 
 ## Usage
 
@@ -122,11 +126,23 @@ If you want the display to hide when the mouse exits the view. The mouse re-
 entering the bounds of the view will cause it to become visible again.
 
 ```swift
-@IBInspectable public var hideAfter: TimeInterval = 5
+public var hideAfter: TimeInterval = 5
 ```
 
 The view is initially visible. If `hideOnMouseOut` is true, this is how long the
 view will remain visible before being hidden.
+
+```swift
+public var hiddenAlphaValue: CGFloat = 0
+```
+
+Sets the alpha value when the control is hidden.
+
+```swift
+public var visibleAlphaValue: CGFloat = 1
+```
+
+Sets the alpha value when the control is visible.
 
 ```swift
 public var status: Status = .paused
@@ -146,7 +162,7 @@ The theme to use. `Dark` is the default, but `Light` is also available. See the
 section on Themes below.
 
 ```swift
-@IBInspectable public var iconSize = CGSize(width: 100, height: 100)
+@IBInspectable public var iconSize = NSSize(width: 100, height: 100)
 ```
 
 The size of icons to use. This should be set to the largest possible size that

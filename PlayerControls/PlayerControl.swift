@@ -1,5 +1,5 @@
 //
-//  PlayerControls.swift
+//  PlayerControl.swift
 //  PlayerControls
 //
 //  The MIT License (MIT)
@@ -43,8 +43,8 @@ public class PlayerControl: NSVisualEffectView {
                 return
             }
             
-            self.slider?.maxValue = totalTime!
-            self.slider?.isEnabled = true
+            self.slider.maxValue = totalTime!
+            self.slider.isEnabled = true
             self.remainingTimeLabel.stringValue = totalTime!.string()
         }
     }
@@ -58,8 +58,9 @@ public class PlayerControl: NSVisualEffectView {
                 self.currentTime = 0
                 return
             }
+            
             if tt >= currentTime {
-                self.slider?.doubleValue = self.currentTime
+                self.slider.doubleValue = self.currentTime
                 self.currentTimeLabel.stringValue = self.currentTime.string()
                 self.remainingTimeLabel.stringValue = (tt - self.currentTime).string()
             }
@@ -72,23 +73,62 @@ public class PlayerControl: NSVisualEffectView {
     /// How far backward the Jump Backward button advances the time.
     @IBInspectable public var jumpBackwardTimeInterval: TimeInterval = 15
     
-    /// If you are using download percentage in the slider, this
-    /// adjusts how much you show as downloaded. Expressed as a
-    /// CGFloat percentage between 0.0 and 1.0.
+    /// If you are using download percentage in the slider, this adjusts how
+    /// much you show as downloaded. Expressed as a CGFloat percentage between
+    /// 0.0 and 1.0.
     public var transferred: CGFloat = 0 {
         didSet {
+            if transferred < 0 {
+                transferred = 0
+                return
+            }
+            
+            if transferred > 1 {
+                transferred = 0
+                return
+            }
+            
             self.slider.transferred = self.transferred
         }
     }
     
-    /// If enabled, when the used mouses over the player the player
-    /// is shown, and when the mouse leaves the bounds the player is
-    /// hidden.
-    @IBInspectable public var hideOnMouseOut: Bool = true
+    /// If enabled, when the used mouses over the player the player is shown,
+    /// and when the mouse leaves the bounds the player is hidden.
+    @IBInspectable public var hideOnMouseOut: Bool = true {
+        didSet {
+            self.layoutControl()
+        }
+    }
     
-    /// If true (and hideOnMouseOut is true) shows the player
-    /// initially, then hides it after this TimeInterval.
-    @IBInspectable public var hideAfter: TimeInterval = 5
+    /// If true (and hideOnMouseOut is true) shows the player initially, then
+    /// hides it after this TimeInterval.
+    public var hideAfter: TimeInterval = 5 {
+        didSet {
+            self.layoutControl()
+        }
+    }
+    
+    /// Sets how hidden the control is when it is hidden. Expressed as a float
+    /// between 0 and 1.
+    public var hiddenAlphaValue: CGFloat = 0 {
+        didSet {
+            self.layoutControl()
+            if isHidden {
+                self.animator().alphaValue = hiddenAlphaValue
+            }
+        }
+    }
+    
+    /// Sets how visible the control is when it is visible. Expressed as a float
+    /// between 0 and 1.
+    public var visibleAlphaValue: CGFloat = 1 {
+        didSet {
+            self.layoutControl()
+            if !isHidden {
+                self.animator().alphaValue = visibleAlphaValue
+            }
+        }
+    }
     
     /// The status of the control (playing or paused)
     public var status: Status = .paused {
@@ -97,26 +137,115 @@ public class PlayerControl: NSVisualEffectView {
         }
     }
     
+    /// Sets the theme. It is an instance of PlayerControlTheme.
     public var theme: PlayerControlTheme = Dark() {
         didSet {
-            self.setTheme()
+            self.layoutControl()
         }
     }
     
-    @IBInspectable public var iconSize = CGSize(width: 100, height: 100)
+    /// We override the isHidden property to use alpha values to control the
+    /// visiblity of the control.
+    public override var isHidden: Bool {
+        set {
+            _isHidden = newValue
+            if _isHidden {
+                self.animator().alphaValue = self.hiddenAlphaValue
+            } else {
+                self.animator().alphaValue = self.visibleAlphaValue
+            }
+        }
+        get {
+            return _isHidden
+        }
+    }
     
-    @IBInspectable public var showRewindButton: Bool = true
-    @IBInspectable public var showFastForwardButton: Bool = true
-    @IBInspectable public var showJumpBackButton: Bool = true
-    @IBInspectable public var showForwardButton: Bool = true
-    @IBInspectable public var showLabels: Bool = true
+    /// Private var to control our actual hidden status.
+    private var _isHidden: Bool = false;
     
-    @IBInspectable public var rewindbuttonImage: NSImage?
-    @IBInspectable public var fastForwardButtonImage: NSImage?
-    @IBInspectable public var jumpBackButtonImage: NSImage?
-    @IBInspectable public var jumpForwardButtonImage: NSImage?
-    @IBInspectable public var playButtonImage: NSImage?
-    @IBInspectable public var pauseButtonImage: NSImage?
+    /// The size of icons to use. This should be set to the largest possible
+    /// size that will be used on your play/pause button. It will be
+    /// automatically scaled down for your smaller buttons.
+    @IBInspectable public var iconSize = NSSize(width: 100, height: 100)
+    
+    /// Whether the Rewind button is visible.
+    @IBInspectable public var showRewindButton: Bool = true {
+        didSet {
+            self.layoutControl()
+        }
+    }
+    
+    /// Whether the Fast Forward button is visible.
+    @IBInspectable public var showFastForwardButton: Bool = true {
+        didSet {
+            self.layoutControl()
+        }
+    }
+    
+    /// Whether the Jump Back button is visible.
+    @IBInspectable public var showJumpBackButton: Bool = true {
+        didSet {
+            self.layoutControl()
+        }
+    }
+    
+    /// Whether the Jump Forward button is visible.
+    @IBInspectable public var showJumpForwardButton: Bool = true {
+        didSet {
+            self.layoutControl()
+        }
+    }
+    
+    /// Whether the time labels are visible.
+    @IBInspectable public var showLabels: Bool = true {
+        didSet {
+            self.layoutControl()
+        }
+    }
+    
+    /// The image used on the Rewind button.
+    @IBInspectable public var rewindbuttonImage: NSImage? {
+        didSet {
+            self.layoutControl()
+        }
+    }
+    
+    /// The image used on the Fast Forward button.
+    @IBInspectable public var fastForwardButtonImage: NSImage? {
+        didSet {
+            self.layoutControl()
+        }
+    }
+    
+    /// The image used on the Jump Back button.
+    @IBInspectable public var jumpBackButtonImage: NSImage? {
+        didSet {
+            self.layoutControl()
+        }
+    }
+    
+    /// The image used on the Jump Forward button.
+    @IBInspectable public var jumpForwardButtonImage: NSImage? {
+        didSet {
+            self.layoutControl()
+        }
+    }
+    
+    /// The image used on the Play button.
+    @IBInspectable public var playButtonImage: NSImage? {
+        didSet {
+            self.layoutControl()
+        }
+    }
+    
+    /// The image used on the Pause button. From a technical standpoint, Play
+    /// and Pause are the same button, and the image is swapped depending on the
+    /// state.
+    @IBInspectable public var pauseButtonImage: NSImage? {
+        didSet {
+            self.layoutControl()
+        }
+    }
     
     /// An enum that holds our playing statuses.
     ///
@@ -127,15 +256,50 @@ public class PlayerControl: NSVisualEffectView {
         case paused
     }
     
-    private var slider: PlayerSlider!
-    private var remainingTimeLabel: PlayerLabel!
-    private var currentTimeLabel: PlayerLabel!
+    /// The instance of the slider.
+    private var slider: PlayerSlider = PlayerSlider()
     
-    private var playButton: PlayerControlButton!
-    private var rewindButton: PlayerControlButton!
-    private var fastFowardButton: PlayerControlButton!
-    private var jumpBackButton: PlayerControlButton!
-    private var jumpForwardButton: PlayerControlButton!
+    /// The instance of the remaining time label.
+    private var remainingTimeLabel: PlayerLabel = PlayerLabel()
+    
+    /// The instance of the current time label.
+    private var currentTimeLabel: PlayerLabel = PlayerLabel()
+    
+    /// The instance of the play/pause button.
+    private var playButton: PlayerControlButton = PlayerControlButton()
+    
+    /// The instance of the rewind button.
+    private var rewindButton: PlayerControlButton = PlayerControlButton()
+    
+    /// The instance of the fast forward button.
+    private var fastForwardButton: PlayerControlButton = PlayerControlButton()
+    
+    /// The instance of the jump backward button.
+    private var jumpBackButton: PlayerControlButton = PlayerControlButton()
+    
+    /// The instance of the jum forward button.
+    private var jumpForwardButton: PlayerControlButton = PlayerControlButton()
+    
+    /// Convenience var to determine if any upper controls are visible.
+    private var areAnyButtonsVisible: Bool {
+        get {
+            return self.showLabels ||
+                self.showRewindButton ||
+                self.showJumpBackButton ||
+                self.showFastForwardButton ||
+                self.showJumpForwardButton
+        }
+    }
+    
+    /// The main stack is the vertical stack, with controls on top and slider on
+    /// bottom.
+    private var mainStack: NSStackView = NSStackView()
+    
+    /// The control stack is the horizontal stack above the slider.
+    private var controlStack: NSStackView = NSStackView()
+    
+    /// Holds the timer that delays hiding.
+    private var hideTimer: Timer? = nil
     
     /// Sets up the control
     override public func awakeFromNib() {
@@ -145,34 +309,48 @@ public class PlayerControl: NSVisualEffectView {
         self.translatesAutoresizingMaskIntoConstraints = false
         self.postsFrameChangedNotifications = true
         
-        self.createPlayButton()
-        self.createSlider()
-        self.createJumpButtons()
-        self.createLabels()
-        self.createStacks()
-        self.setTheme()
+        self.addSubviewConstraints()
+        self.setupStacks()
+        self.layoutControl()
+    }
+    
+    func addSubviewConstraints() {
+        self.addSubview(self.playButton)
+        self.addConstraints([
+            .init(item: self.playButton, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1, constant: 5),
+            .init(item: self, attribute: .bottom, relatedBy: .equal, toItem: self.playButton, attribute: .bottom, multiplier: 1, constant: 5),
+            .init(item: self.playButton, attribute: .left, relatedBy: .equal, toItem: self, attribute: .left, multiplier: 1, constant: 5),
+            .init(item: self.playButton, attribute: .width, relatedBy: .equal, toItem: self.playButton, attribute: .height, multiplier: 1, constant: 0)
+            ])
         
-        NotificationCenter.default.addObserver(forName: NSView.frameDidChangeNotification, object: self, queue: nil) { (notificiation) in
-            for tracking in self.trackingAreas {
-                self.removeTrackingArea(tracking)
-            }
-            
-            let options: NSTrackingArea.Options = [.mouseEnteredAndExited, .activeAlways]
-            let trackingArea = NSTrackingArea(rect: self.bounds, options: options, owner: self, userInfo: nil)
-            self.addTrackingArea(trackingArea)
-        }
+        self.addSubview(mainStack)
+        self.addConstraints([
+            .init(item: mainStack, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1, constant: 5),
+            .init(item: self, attribute: .bottom, relatedBy: .equal, toItem: mainStack, attribute: .bottom, multiplier: 1, constant: 5),
+            .init(item: mainStack, attribute: .left, relatedBy: .equal, toItem: self.playButton, attribute: .right, multiplier: 1, constant: 5),
+            .init(item: self, attribute: .right, relatedBy: .equal, toItem: mainStack, attribute: .right, multiplier: 1, constant: 5)
+            ])
+    }
+    
+    func layoutControl() {
+        setupPlayButton()
+        setupSlider()
+        setupJumpButtons()
+        setupLabels()
+        setupControlInStacks()
+        setTheme()
+        setHiding()
     }
     
     override public func mouseEntered(with event: NSEvent) {
-        self.animator().alphaValue = 1
+        self.isHidden = false
     }
     
     override public func mouseExited(with event: NSEvent) {
-        self.animator().alphaValue = 0
+        self.isHidden = true
     }
     
-    func createPlayButton() {
-        self.playButton = PlayerControlButton()
+    func setupPlayButton() {
         self.playButton.theme = self.theme
         self.playButton.action = #selector(self.playButtonClicked)
         self.playButton.target = self
@@ -180,18 +358,9 @@ public class PlayerControl: NSVisualEffectView {
         self.playButton.translatesAutoresizingMaskIntoConstraints = false
         self.playButton.image = self.playButtonImage
         self.playButton.alternateImage = self.pauseButtonImage
-        self.addSubview(self.playButton)
-        
-        self.addConstraints([
-            .init(item: self.playButton, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1, constant: 5),
-            .init(item: self, attribute: .bottom, relatedBy: .equal, toItem: self.playButton, attribute: .bottom, multiplier: 1, constant: 5),
-            .init(item: self.playButton, attribute: .left, relatedBy: .equal, toItem: self, attribute: .left, multiplier: 1, constant: 5),
-            .init(item: self.playButton, attribute: .width, relatedBy: .equal, toItem: self.playButton, attribute: .height, multiplier: 1, constant: 0)
-            ])
     }
     
-    func createSlider() {
-        self.slider = PlayerSlider()
+    func setupSlider() {
         self.slider.target = self
         self.slider.action = #selector(self.sliderChanged)
         self.slider.isEnabled = false
@@ -199,67 +368,32 @@ public class PlayerControl: NSVisualEffectView {
         self.slider.translatesAutoresizingMaskIntoConstraints = false
     }
     
-    func createJumpButtons() {
-        func createButton(image: NSImage?) -> PlayerControlButton {
-            let button = PlayerControlButton()
-            button.theme = self.theme
-            button.target = self
-            button.action = #selector(jump)
-            button.image = image
-            
-            self.addConstraints([
-                .init(item: button, attribute: .width, relatedBy: .equal, toItem: self.playButton, attribute: .width, multiplier: 0.5, constant: 0),
-                .init(item: button, attribute: .width, relatedBy: .equal, toItem: button, attribute: .height, multiplier: 1, constant: 0)
-                ])
-            
-            return button
-        }
-        
-        self.jumpBackButton = createButton(image: self.jumpBackButtonImage)
-        self.jumpForwardButton = createButton(image: self.jumpForwardButtonImage)
-        self.fastFowardButton = createButton(image: self.fastForwardButtonImage)
-        self.rewindButton = createButton(image: self.rewindbuttonImage)
+    func setupJumpButtons() {
+        setupButton(button: jumpBackButton, image: jumpBackButtonImage)
+        setupButton(button: jumpForwardButton, image: jumpForwardButtonImage)
+        setupButton(button: fastForwardButton, image: fastForwardButtonImage)
+        setupButton(button: rewindButton, image: rewindbuttonImage)
     }
     
-    func createLabels() {
-        func createLabel() -> PlayerLabel {
-            let obj = PlayerLabel()
-            obj.isEditable = false
-            obj.stringValue = "00:00:00"
-            obj.textColor = .white
-            obj.isBezeled = false
-            obj.drawsBackground = false
-            
-            return obj
-        }
-        
-        self.currentTimeLabel = createLabel()
-        self.remainingTimeLabel = createLabel()
+    func setupLabels() {
+        setupLabel(label: currentTimeLabel)
+        setupLabel(label: remainingTimeLabel)
     }
     
-    func createStacks() {
-        let stack = NSStackView()
-        stack.translatesAutoresizingMaskIntoConstraints = false
-        stack.orientation = .vertical
-        stack.alignment = .centerX
-        stack.distribution = .equalCentering
-        stack.spacing = 5
-        self.addSubview(stack)
-        self.addConstraints([
-            .init(item: stack, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1, constant: 5),
-            .init(item: self, attribute: .bottom, relatedBy: .equal, toItem: stack, attribute: .bottom, multiplier: 1, constant: 5),
-            .init(item: stack, attribute: .left, relatedBy: .equal, toItem: self.playButton, attribute: .right, multiplier: 1, constant: 5),
-            .init(item: self, attribute: .right, relatedBy: .equal, toItem: stack, attribute: .right, multiplier: 1, constant: 5)
-            ])
+    func setupStacks() {
+        mainStack.translatesAutoresizingMaskIntoConstraints = false
+        mainStack.orientation = .vertical
+        mainStack.alignment = .centerX
+        mainStack.distribution = .equalCentering
+        mainStack.spacing = 5
         
-        let controlStack = NSStackView()
         controlStack.orientation = .horizontal
         controlStack.alignment = .centerY
         controlStack.distribution = .fill
         controlStack.spacing = 5
         
-        stack.addArrangedSubview(controlStack)
-        stack.addArrangedSubview(self.slider)
+        mainStack.addArrangedSubview(controlStack)
+        mainStack.addArrangedSubview(self.slider)
         
         let spacerView = NSView()
         spacerView.setContentHuggingPriority(.defaultLow, for: .horizontal)
@@ -270,7 +404,22 @@ public class PlayerControl: NSVisualEffectView {
         controlStack.addArrangedSubview(spacerView)
         controlStack.addArrangedSubview(self.remainingTimeLabel)
         controlStack.addArrangedSubview(self.jumpForwardButton)
-        controlStack.addArrangedSubview(self.fastFowardButton)
+        controlStack.addArrangedSubview(self.fastForwardButton)
+    }
+    
+    func setupControlInStacks() {
+        if self.areAnyButtonsVisible {
+            self.controlStack.isHidden = false
+            
+            self.rewindButton.isHidden = !showRewindButton
+            self.jumpBackButton.isHidden = !showJumpBackButton
+            self.remainingTimeLabel.isHidden = !showLabels
+            self.currentTimeLabel.isHidden = !showLabels
+            self.jumpForwardButton.isHidden = !showJumpForwardButton
+            self.fastForwardButton.isHidden = !showFastForwardButton
+        } else {
+            controlStack.isHidden = true
+        }
     }
     
     func setTheme() {
@@ -278,13 +427,45 @@ public class PlayerControl: NSVisualEffectView {
         self.material = self.theme.material
         self.playButton.theme = self.theme
         self.rewindButton.theme = self.theme
-        self.fastFowardButton.theme = self.theme
+        self.fastForwardButton.theme = self.theme
         self.jumpBackButton.theme = self.theme
         self.jumpForwardButton.theme = self.theme
         self.slider.theme = self.theme
         self.currentTimeLabel.theme = self.theme
         self.remainingTimeLabel.theme = self.theme
+    }
+    
+    func setHiding() {
+        self.animator().alphaValue = self.visibleAlphaValue
+        NotificationCenter.default.removeObserver(self, name: NSView.frameDidChangeNotification, object: nil)
         
+        if self.hideOnMouseOut {
+            self.setTrackingArea()
+            NotificationCenter.default.addObserver(forName: NSView.frameDidChangeNotification, object: self, queue: nil) { (notificiation) in
+                self.setTrackingArea()
+            }
+            
+            if self.hideAfter > 0 {
+                self.hideTimer = Timer.scheduledTimer(withTimeInterval: self.hideAfter, repeats: false) { timer in
+                    self.isHidden = true
+                }
+            }
+        } else {
+            self.hideTimer?.invalidate()
+            for tracking in self.trackingAreas {
+                self.removeTrackingArea(tracking)
+            }
+        }
+    }
+    
+    public func setTrackingArea() {
+        for tracking in self.trackingAreas {
+            self.removeTrackingArea(tracking)
+        }
+        
+        let options: NSTrackingArea.Options = [.mouseEnteredAndExited, .activeAlways]
+        let trackingArea = NSTrackingArea(rect: self.bounds, options: options, owner: self, userInfo: nil)
+        self.addTrackingArea(trackingArea)
     }
     
     @objc func playButtonClicked() {
@@ -307,7 +488,7 @@ public class PlayerControl: NSVisualEffectView {
                 self.currentTime = self.currentTime + self.jumpForwardTimeInternal
             }
             
-            if sender == self.fastFowardButton {
+            if sender == self.fastForwardButton {
                 self.currentTime = tt
             }
             
@@ -325,5 +506,25 @@ public class PlayerControl: NSVisualEffectView {
             
             self.delegate?.timeChanged(self, time: self.currentTime)
         }
+    }
+
+    private func setupButton(button: PlayerControlButton, image: NSImage?) {
+        button.theme = self.theme
+        button.target = self
+        button.action = #selector(jump)
+        button.image = image
+        
+        self.addConstraints([
+            .init(item: button, attribute: .width, relatedBy: .equal, toItem: self.playButton, attribute: .width, multiplier: 0.5, constant: 0),
+            .init(item: button, attribute: .width, relatedBy: .equal, toItem: button, attribute: .height, multiplier: 1, constant: 0)
+            ])
+    }
+
+    private func setupLabel(label: PlayerLabel) {
+        label.isEditable = false
+        label.stringValue = "00:00:00"
+        label.textColor = .white
+        label.isBezeled = false
+        label.drawsBackground = false
     }
 }

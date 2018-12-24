@@ -29,7 +29,7 @@
 import Cocoa
 import PlayerControls
 
-class ViewController: NSViewController {
+@objc class ViewController: NSViewController {
     
     @objc var viewBackgroundColor: NSColor = .black {
         didSet {
@@ -37,9 +37,9 @@ class ViewController: NSViewController {
         }
     }
     
-    @objc var tranferred: CGFloat = 0 {
+    @objc var transferred: CGFloat = 0 {
         didSet {
-            self.playerControl.transferred = self.tranferred / 100
+            self.playerControl.transferred = self.transferred / 100
         }
     }
     
@@ -54,16 +54,76 @@ class ViewController: NSViewController {
             self.playerControl.currentTime = currentTime.doubleValue
         }
     }
+    
+    @objc var hiddenAlphaValue: CGFloat = 0 {
+        didSet {
+            self.playerControl.hiddenAlphaValue = self.hiddenAlphaValue
+        }
+    }
+    
+    @objc var visibleAlphaValue: CGFloat = 1 {
+        didSet {
+            self.playerControl.visibleAlphaValue = self.visibleAlphaValue
+        }
+    }
+    
+    @objc var hideOnMouseOut: Bool = true {
+        didSet {
+            self.playerControl.hideOnMouseOut = self.hideOnMouseOut
+        }
+    }
+
+    @objc var showLabels: Bool = true {
+        didSet {
+            self.playerControl.showLabels = self.showLabels
+        }
+    }
+
+    @objc var showRewindButton: Bool = true {
+        didSet {
+            self.playerControl.showRewindButton = self.showRewindButton
+        }
+    }
+
+    @objc var showFastForwardButton: Bool = true {
+        didSet {
+            self.playerControl.showFastForwardButton = self.showFastForwardButton
+        }
+    }
+
+    @objc var showJumpBackButton: Bool = true {
+        didSet {
+            self.playerControl.showJumpBackButton = self.showJumpBackButton
+        }
+    }
+
+    @objc var showJumpForwardButton: Bool = true {
+        didSet {
+            self.playerControl.showJumpForwardButton = self.showJumpForwardButton
+        }
+    }
 
     @IBOutlet weak var containerLayer: NSView!
     @IBOutlet weak var playerControl: PlayerControl!
     @IBOutlet weak var actionLabel: NSTextField!
+    @IBOutlet weak var backgroundLabel: NSTextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.containerLayer.wantsLayer = true
         self.containerLayer.layer?.backgroundColor = self.viewBackgroundColor.cgColor
+        
         self.playerControl.delegate = self
+        self.playerControl.playButtonImage = NSImage(named: .play)?.imageWithTintColor(tint: .gray)
+        self.playerControl.pauseButtonImage = NSImage(named: .pause)?.imageWithTintColor(tint: .gray)
+        self.playerControl.jumpForwardButtonImage = NSImage(named: .ff)?.imageWithTintColor(tint: .gray)
+        self.playerControl.fastForwardButtonImage = NSImage(named: .end)?.imageWithTintColor(tint: .gray)
+        self.playerControl.jumpBackButtonImage = NSImage(named: .rewind)?.imageWithTintColor(tint: .gray)
+        self.playerControl.rewindbuttonImage = NSImage(named: .beginning)?.imageWithTintColor(tint: .gray)
+    }
+    
+    override func setNilValueForKey(_ key: String) {
+        // Here to prevent an error with bindings.
     }
     
     @IBAction func themeChanged(_ sender: Any?) {
@@ -72,6 +132,22 @@ class ViewController: NSViewController {
                 self.playerControl.theme = Dark()
             } else {
                 self.playerControl.theme = Light()
+            }
+        }
+    }
+    
+    @IBAction func openFile(_ sender: Any?) {
+        let openPanel = NSOpenPanel()
+        openPanel.allowsMultipleSelection = false
+        openPanel.canChooseDirectories = false
+        openPanel.canCreateDirectories = false
+        openPanel.canChooseFiles = true
+        openPanel.allowedFileTypes = ["jpg"]
+        openPanel.begin { (result) in
+            if result == NSApplication.ModalResponse.OK {
+                let fURL = openPanel.urls[0]
+                self.containerLayer.layer?.contents = NSImage(contentsOf: fURL)
+                self.backgroundLabel.stringValue = fURL.absoluteString
             }
         }
     }
@@ -93,6 +169,4 @@ extension ViewController: PlayerControlDelegate {
     func timeChanged(_ playerControl: PlayerControl, time: TimeInterval) {
         self.actionLabel.stringValue = "timeChanged " + String(time)
     }
-    
-    
 }
