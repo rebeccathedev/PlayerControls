@@ -4,6 +4,8 @@ PlayerControls is a macOS Cocoa framework that creates a View containing
 playback controls for media like videos or sounds. It is written in pure Swift 
 4 and has no dependencies.
 
+![control](https://raw.githubusercontent.com/peckrob/PlayerControls/master/Screenshots/control.png)
+
 ## Why?
 
 Primarily, this is written to work with `VLCKit` which provides a media player
@@ -39,6 +41,8 @@ build the framework as a dependency.
 Icons used in the demo are made by [Freepik](https://www.freepik.com/) from 
 [www.flaticon.com](https://www.flaticon.com/) and licensed by 
 [CC 3.0 BY](http://creativecommons.org/licenses/by/3.0/).
+
+![control](https://raw.githubusercontent.com/peckrob/PlayerControls/master/Screenshots/demoapp.png)
 
 ## Usage
 
