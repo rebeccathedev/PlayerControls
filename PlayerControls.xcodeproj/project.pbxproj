@@ -10,6 +10,8 @@
 		CF1CC31421CC4EBC0082F5C6 /* PlayerControls.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CFA655BE21CBEB4F00CB70B9 /* PlayerControls.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		CF34B17F21CC8F2D00D3CD72 /* PlayerLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF34B17E21CC8F2D00D3CD72 /* PlayerLabel.swift */; };
 		CF34B18121CC90CE00D3CD72 /* Light.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF34B18021CC90CE00D3CD72 /* Light.swift */; };
+		CF34B18321CFD63200D3CD72 /* NSImage+Tint.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF34B18221CFD63200D3CD72 /* NSImage+Tint.swift */; };
+		CF34B18521CFE62900D3CD72 /* NSImage+Names.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF34B18421CFE62900D3CD72 /* NSImage+Names.swift */; };
 		CFA655C821CBEB4F00CB70B9 /* PlayerControls.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFA655BE21CBEB4F00CB70B9 /* PlayerControls.framework */; };
 		CFA655CD21CBEB4F00CB70B9 /* PlayerControlsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA655CC21CBEB4F00CB70B9 /* PlayerControlsTests.swift */; };
 		CFA655CF21CBEB4F00CB70B9 /* PlayerControls.h in Headers */ = {isa = PBXBuildFile; fileRef = CFA655C121CBEB4F00CB70B9 /* PlayerControls.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -64,6 +66,8 @@
 /* Begin PBXFileReference section */
 		CF34B17E21CC8F2D00D3CD72 /* PlayerLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerLabel.swift; sourceTree = "<group>"; };
 		CF34B18021CC90CE00D3CD72 /* Light.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Light.swift; sourceTree = "<group>"; };
+		CF34B18221CFD63200D3CD72 /* NSImage+Tint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSImage+Tint.swift"; sourceTree = "<group>"; };
+		CF34B18421CFE62900D3CD72 /* NSImage+Names.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSImage+Names.swift"; sourceTree = "<group>"; };
 		CFA655BE21CBEB4F00CB70B9 /* PlayerControls.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PlayerControls.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFA655C121CBEB4F00CB70B9 /* PlayerControls.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlayerControls.h; sourceTree = "<group>"; };
 		CFA655C221CBEB4F00CB70B9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -184,6 +188,8 @@
 				CFA655FA21CC142A00CB70B9 /* Main.storyboard */,
 				CFA655FD21CC142A00CB70B9 /* Info.plist */,
 				CFA655FE21CC142A00CB70B9 /* PlayerControlsDemo.entitlements */,
+				CF34B18221CFD63200D3CD72 /* NSImage+Tint.swift */,
+				CF34B18421CFE62900D3CD72 /* NSImage+Names.swift */,
 			);
 			path = PlayerControlsDemo;
 			sourceTree = "<group>";
@@ -365,7 +371,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				CFA655F721CC142900CB70B9 /* ViewController.swift in Sources */,
+				CF34B18521CFE62900D3CD72 /* NSImage+Names.swift in Sources */,
 				CFA655F521CC142900CB70B9 /* AppDelegate.swift in Sources */,
+				CF34B18321CFD63200D3CD72 /* NSImage+Tint.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
