@@ -32,7 +32,7 @@ import Cocoa
 public class PlayerControl: NSVisualEffectView {
     
     /// Provides a delegate for messages.
-    public var delegate: PlayerControlDelegate? = nil
+    public weak var delegate: PlayerControlDelegate? = nil
     
     /// The total time of the media you are playing. This is expressed as a
     /// TimeInterval type.
