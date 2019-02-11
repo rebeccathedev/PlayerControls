@@ -29,7 +29,7 @@
 import Foundation
 
 /// A delegate protocol for messages about the Player Controls.
-public protocol PlayerControlDelegate {
+public protocol PlayerControlDelegate: class {
     
     /// Delegate message sent when the player control status changes.
     ///
