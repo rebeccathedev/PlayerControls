@@ -2,11 +2,11 @@
 //  NSImage+Tint.swift
 //  PlayerControlsDemo
 //
-//  Created by Rob Peck on 12/23/18.
+//  Created by Rebecca Peck on 12/23/18.
 //  
 //  The MIT License (MIT)
 //
-//  Copyright (c) 2018 Rob Peck
+//  Copyright (c) 2018 Rebecca Peck
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a
 //  copy of this software and associated documentation files (the "Software"),

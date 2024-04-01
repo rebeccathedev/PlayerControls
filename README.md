@@ -322,7 +322,7 @@ Don't forget to set your class as the delegate.
 
 ## Author
 
-Rob Peck
+Rebecca Peck
 
 ## License
 
