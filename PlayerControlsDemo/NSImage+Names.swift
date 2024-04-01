@@ -2,8 +2,8 @@
 //  NSImage+Names.swift
 //  PlayerControlsDemo
 //
-//  Created by Rob Peck on 12/23/18.
-//  Copyright © 2018 Rob Peck. All rights reserved.
+//  Created by Rebecca Peck on 12/23/18.
+//  Copyright © 2018 Rebecca Peck. All rights reserved.
 //
 
 import Foundation
