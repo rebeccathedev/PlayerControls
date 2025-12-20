@@ -28,6 +28,7 @@
 
 import Cocoa
 
+@MainActor
 class PlayerLabel: NSTextField {
     public var theme: PlayerControlTheme = Dark() {
         didSet {

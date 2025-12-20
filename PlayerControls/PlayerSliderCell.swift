@@ -28,6 +28,7 @@
 
 import Foundation
 
+@MainActor
 class PlayerSliderCell: NSSliderCell {
     
     public var transferred: CGFloat = 0

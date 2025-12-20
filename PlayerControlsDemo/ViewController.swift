@@ -28,7 +28,9 @@
 
 import Cocoa
 import PlayerControls
+import UniformTypeIdentifiers
 
+@MainActor
 @objc class ViewController: NSViewController {
     
     @objc var viewBackgroundColor: NSColor = .black {
@@ -122,7 +124,7 @@ import PlayerControls
         self.playerControl.rewindbuttonImage = NSImage(named: .beginning)?.imageWithTintColor(tint: .gray)
     }
     
-    override func setNilValueForKey(_ key: String) {
+    override nonisolated func setNilValueForKey(_ key: String) {
         // Here to prevent an error with bindings.
     }
     
@@ -142,13 +144,15 @@ import PlayerControls
         openPanel.canChooseDirectories = false
         openPanel.canCreateDirectories = false
         openPanel.canChooseFiles = true
-        openPanel.allowedFileTypes = ["jpg"]
-        openPanel.begin { (result) in
-            if result == NSApplication.ModalResponse.OK {
-                let fURL = openPanel.urls[0]
-                self.containerLayer.layer?.contents = NSImage(contentsOf: fURL)
-                self.backgroundLabel.stringValue = fURL.absoluteString
+        openPanel.allowedContentTypes = [.jpeg]
+        
+        openPanel.begin { [weak self] result in
+            guard let self, result == .OK, let url = openPanel.url else {
+                return
             }
+            
+            self.containerLayer.layer?.contents = NSImage(contentsOf: url)
+            self.backgroundLabel.stringValue = url.absoluteString
         }
     }
 }

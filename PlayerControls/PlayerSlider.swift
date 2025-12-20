@@ -28,7 +28,7 @@
 
 import Foundation
 
-
+@MainActor
 class PlayerSlider: NSSlider {
     public var transferred: CGFloat = 0 {
         didSet {

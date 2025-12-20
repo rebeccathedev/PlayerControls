@@ -33,14 +33,20 @@ import Cocoa
 
 extension NSImage {
     func imageWithTintColor(tint: NSColor) -> NSImage {
-        guard let tinted = self.copy() as? NSImage else { return self }
-        tinted.lockFocus()
-        tint.set()
+        guard let cgRef = self.cgImage(forProposedRect: nil, context: nil, hints: nil) else {
+            return self
+        }
         
-        let imageRect = NSRect(origin: NSZeroPoint, size: self.size)
-        __NSRectFillUsingOperation(imageRect, .sourceAtop)
-        
-        tinted.unlockFocus()
-        return tinted
+        let size = self.size
+        return NSImage(size: size, flipped: false) { bounds in
+            tint.setFill()
+            bounds.fill()
+            
+            let context = NSGraphicsContext.current?.cgContext
+            context?.setBlendMode(.destinationIn)
+            context?.draw(cgRef, in: bounds)
+            
+            return true
+        }
     }
 }
