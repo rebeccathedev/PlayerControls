@@ -18,7 +18,13 @@ let package = Package(
             name: "PlayerControls",
             dependencies: [],
             path: "PlayerControls",
-            exclude: []
+            exclude: [
+                "Info.plist",
+                "PlayerControls.h"
+            ],
+            linkerSettings: [
+                .linkedFramework("AppKit")
+            ]
         ),
         .testTarget(
             name: "PlayerControlsTests",
