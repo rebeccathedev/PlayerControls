@@ -43,20 +43,31 @@ class PlayerControlButton: NSButton {
         set {}
     }
     
+    override var intrinsicContentSize: NSSize {
+        // Return a reasonable default size if no image is set
+        if let img = self.image {
+            return img.size
+        }
+        return NSSize(width: 44, height: 44)
+    }
+    
     override func draw(_ dirtyRect: NSRect) {
         guard let ctx = NSGraphicsContext.current?.cgContext else { return }
         
+        // Use bounds instead of dirtyRect for the actual button frame
+        let buttonRect = self.bounds
+        
         // Create a rounded rect and fill it.
-        let path = NSBezierPath(roundedRect: dirtyRect, xRadius: 5, yRadius: 5)
+        let path = NSBezierPath(roundedRect: buttonRect, xRadius: 5, yRadius: 5)
         ctx.setFillColor(self.theme.buttonColor.cgColor)
         ctx.setAlpha(self.theme.buttonAlpha)
         ctx.addPath(path.cgPath)
         ctx.fillPath()
         
-        var iconRect = dirtyRect
-        iconRect.size.width = dirtyRect.size.width * (2/3)
-        iconRect.size.height = dirtyRect.size.height * (2/3)
-        iconRect.center(in: dirtyRect)
+        var iconRect = buttonRect
+        iconRect.size.width = buttonRect.size.width * (2/3)
+        iconRect.size.height = buttonRect.size.height * (2/3)
+        iconRect.center(in: buttonRect)
         
         var drawImage: NSImage? = self.image
         if let img = self.alternateImage, self.state == .on {
