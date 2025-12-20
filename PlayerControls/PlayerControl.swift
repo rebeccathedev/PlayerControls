@@ -316,20 +316,25 @@ public class PlayerControl: NSVisualEffectView {
     
     func addSubviewConstraints() {
         self.addSubview(self.playButton)
-        self.addConstraints([
-            .init(item: self.playButton, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1, constant: 5),
-            .init(item: self, attribute: .bottom, relatedBy: .equal, toItem: self.playButton, attribute: .bottom, multiplier: 1, constant: 5),
-            .init(item: self.playButton, attribute: .left, relatedBy: .equal, toItem: self, attribute: .left, multiplier: 1, constant: 5),
-            .init(item: self.playButton, attribute: .width, relatedBy: .equal, toItem: self.playButton, attribute: .height, multiplier: 1, constant: 0)
-            ])
+        
+        // Pin play button to left, top, and bottom with fixed margins
+        // Make it square (width = height)
+        NSLayoutConstraint.activate([
+            self.playButton.topAnchor.constraint(equalTo: self.topAnchor, constant: 5),
+            self.playButton.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -5),
+            self.playButton.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 5),
+            self.playButton.widthAnchor.constraint(equalTo: self.playButton.heightAnchor)
+        ])
         
         self.addSubview(mainStack)
-        self.addConstraints([
-            .init(item: mainStack, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1, constant: 5),
-            .init(item: self, attribute: .bottom, relatedBy: .equal, toItem: mainStack, attribute: .bottom, multiplier: 1, constant: 5),
-            .init(item: mainStack, attribute: .left, relatedBy: .equal, toItem: self.playButton, attribute: .right, multiplier: 1, constant: 5),
-            .init(item: self, attribute: .right, relatedBy: .equal, toItem: mainStack, attribute: .right, multiplier: 1, constant: 5)
-            ])
+        
+        // Pin mainStack to fill the remaining space
+        NSLayoutConstraint.activate([
+            mainStack.topAnchor.constraint(equalTo: self.topAnchor, constant: 5),
+            mainStack.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -5),
+            mainStack.leftAnchor.constraint(equalTo: self.playButton.rightAnchor, constant: 5),
+            mainStack.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -5)
+        ])
     }
     
     func layoutControl() {
@@ -358,6 +363,12 @@ public class PlayerControl: NSVisualEffectView {
         self.playButton.translatesAutoresizingMaskIntoConstraints = false
         self.playButton.image = self.playButtonImage
         self.playButton.alternateImage = self.pauseButtonImage
+        
+        // Prevent the button from being compressed
+        self.playButton.setContentHuggingPriority(.defaultHigh, for: .horizontal)
+        self.playButton.setContentHuggingPriority(.defaultHigh, for: .vertical)
+        self.playButton.setContentCompressionResistancePriority(.required, for: .horizontal)
+        self.playButton.setContentCompressionResistancePriority(.required, for: .vertical)
     }
     
     func setupSlider() {
@@ -366,6 +377,10 @@ public class PlayerControl: NSVisualEffectView {
         self.slider.isEnabled = false
         self.slider.sliderType = .linear
         self.slider.translatesAutoresizingMaskIntoConstraints = false
+        
+        // Prevent slider from being stretched vertically, keep it at natural height
+        self.slider.setContentHuggingPriority(.required, for: .vertical)
+        self.slider.setContentCompressionResistancePriority(.required, for: .vertical)
     }
     
     func setupJumpButtons() {
@@ -383,8 +398,8 @@ public class PlayerControl: NSVisualEffectView {
     func setupStacks() {
         mainStack.translatesAutoresizingMaskIntoConstraints = false
         mainStack.orientation = .vertical
-        mainStack.alignment = .centerX
-        mainStack.distribution = .equalCentering
+        mainStack.alignment = .leading
+        mainStack.distribution = .fill
         mainStack.spacing = 5
         
         controlStack.orientation = .horizontal
@@ -397,6 +412,7 @@ public class PlayerControl: NSVisualEffectView {
         
         let spacerView = NSView()
         spacerView.setContentHuggingPriority(.defaultLow, for: .horizontal)
+        spacerView.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
         
         controlStack.addArrangedSubview(self.rewindButton)
         controlStack.addArrangedSubview(self.jumpBackButton)
@@ -405,6 +421,12 @@ public class PlayerControl: NSVisualEffectView {
         controlStack.addArrangedSubview(self.remainingTimeLabel)
         controlStack.addArrangedSubview(self.jumpForwardButton)
         controlStack.addArrangedSubview(self.fastForwardButton)
+        
+        // Ensure both controlStack and slider match the width of mainStack
+        NSLayoutConstraint.activate([
+            controlStack.widthAnchor.constraint(equalTo: mainStack.widthAnchor),
+            slider.widthAnchor.constraint(equalTo: mainStack.widthAnchor)
+        ])
     }
     
     func setupControlInStacks() {
@@ -513,11 +535,17 @@ public class PlayerControl: NSVisualEffectView {
         button.target = self
         button.action = #selector(jump)
         button.image = image
+        button.translatesAutoresizingMaskIntoConstraints = false
         
-        self.addConstraints([
-            .init(item: button, attribute: .width, relatedBy: .equal, toItem: self.playButton, attribute: .width, multiplier: 0.5, constant: 0),
-            .init(item: button, attribute: .width, relatedBy: .equal, toItem: button, attribute: .height, multiplier: 1, constant: 0)
-            ])
+        // Add constraints to ensure buttons are square and sized relative to play button
+        NSLayoutConstraint.activate([
+            button.widthAnchor.constraint(equalTo: self.playButton.widthAnchor, multiplier: 0.5),
+            button.widthAnchor.constraint(equalTo: button.heightAnchor)
+        ])
+        
+        // Prevent the button from stretching in the stack view
+        button.setContentHuggingPriority(.required, for: .horizontal)
+        button.setContentCompressionResistancePriority(.required, for: .horizontal)
     }
 
     private func setupLabel(label: PlayerLabel) {
@@ -526,5 +554,10 @@ public class PlayerControl: NSVisualEffectView {
         label.textColor = .white
         label.isBezeled = false
         label.drawsBackground = false
+        label.translatesAutoresizingMaskIntoConstraints = false
+        
+        // Prevent labels from stretching in the stack view
+        label.setContentHuggingPriority(.required, for: .horizontal)
+        label.setContentCompressionResistancePriority(.required, for: .horizontal)
     }
 }
