@@ -15,3 +15,6 @@ DerivedData
 *.xcuserstate
 *.hmap
 *.ipa
+.build/
+**.DS_Store
+.claude/
