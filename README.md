@@ -1,50 +1,79 @@
+<div align="center">
+
 # PlayerControls
 
-PlayerControls is a macOS Cocoa framework that creates a View containing 
-playback controls for media like videos or sounds. It is written in pure Swift 
-4 and has no dependencies.
+### Beautiful media playback controls for macOS
 
-![control](https://raw.githubusercontent.com/peckrob/PlayerControls/master/Screenshots/control.png)
+[![Swift](https://img.shields.io/badge/Swift-5.9+-orange.svg)](https://swift.org)
+[![Platform](https://img.shields.io/badge/platform-macOS%2010.15+-lightgrey.svg)](https://developer.apple.com/macos/)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![SPM](https://img.shields.io/badge/SPM-compatible-brightgreen.svg)](https://swift.org/package-manager/)
 
-## Why?
+A macOS Cocoa framework that creates a beautiful View containing playback controls for media like videos or sounds. Written in pure Swift with zero dependencies.
+
+![control](https://raw.githubusercontent.com/rebeccathedev/PlayerControls/main/Screenshots/control.png)
+
+</div>
+
+## 🤔 Why?
 
 Primarily, this is written to work with `VLCKit` which provides a media player
-playback mechanism with no controls. But it does not rely on `VLCKit` and is 
+playback mechanism with no controls. But it does not rely on `VLCKit` and is
 suitably generic to be useful in many situations.
 
-## Features
-* Extends NSVisualEffectView for a nice blurred effect when overlaying a video.
-* Eminently customizable. Almost all controls can be hidden and icons 
-  customized.
-* Implements a simple delegate protocol to respond to events.
-* AutoLayout aware, responds nicely to resizing.
-* Provides theme support. A Light and Dark theme are included, and creating your
-  own is trivial.
+## ✨ Features
 
-## Installation
+* 🌫️ **Blurred Beauty** - Extends NSVisualEffectView for a gorgeous blurred effect when overlaying videos
+* 🎨 **Fully Customizable** - Hide or show any control, customize all icons to match your app's aesthetic
+* 🔌 **Simple Delegate Protocol** - Easy event handling through a clean delegate pattern
+* 📐 **AutoLayout Ready** - Responds perfectly to resizing and layout changes
+* 🎭 **Theme Support** - Light and Dark themes included, create your own with minimal effort
+
+## 📦 Installation
+
+### Swift Package Manager (Recommended)
+
+Add the following to your `Package.swift` file:
+
+```swift
+dependencies: [
+    .package(url: "https://github.com/rebeccathedev/PlayerControls.git", from: "1.0.0")
+]
+```
+
+Or in Xcode, go to File > Add Package Dependencies and enter:
+```
+https://github.com/rebeccathedev/PlayerControls.git
+```
+
+### Carthage
 
 Add to your `Cartfile`:
 
 ```
-github "peckrob/PlayerControls"
+github "rebeccathedev/PlayerControls"
 ```
+
+### Manual
 
 Alternatively, download the source, build the framework and drag the product
 into your project.
 
-## Demo
+## 🎬 Demo
 
-A demonstration app is available in the source code. To use it, download the 
-source, open in Xcode, set the Scheme to PlayerControlsDemo and build. It will
-build the framework as a dependency.
+A demonstration app is available in the source code. To use it:
+1. Download the source
+2. Open in Xcode
+3. Set the Scheme to **PlayerControlsDemo**
+4. Build and run
 
-Icons used in the demo are made by [Freepik](https://www.freepik.com/) from 
-[www.flaticon.com](https://www.flaticon.com/) and licensed by 
+Icons used in the demo are made by [Freepik](https://www.freepik.com/) from
+[www.flaticon.com](https://www.flaticon.com/) and licensed by
 [CC 3.0 BY](http://creativecommons.org/licenses/by/3.0/).
 
-![control](https://raw.githubusercontent.com/peckrob/PlayerControls/master/Screenshots/demoapp.png)
+![control](https://raw.githubusercontent.com/rebeccathedev/PlayerControls/main/Screenshots/demoapp.png)
 
-## Usage
+## 🚀 Usage
 
 Import the framework.
 
@@ -240,11 +269,11 @@ The image used on the Play button.
 The image used on the Pause button. From a technical standpoint, Play and Pause
 are the same button, and the image is swapped depending on the state.
 
-### Themes
+### 🎭 Themes
 
-`PlayerControl` supports themes that can control some parts of the appearance 
-of the control. Two themes are included, `Light` and `Dark` and `Dark` is the 
-default. You can create your own themes by creating a class or struct that 
+`PlayerControl` supports themes that can control some parts of the appearance
+of the control. Two themes are included, `Light` and `Dark` and `Dark` is the
+default. You can create your own themes by creating a class or struct that
 implements the `PlayerControlTheme` protocol, then setting the `theme:` property
 on the `PlayerControl` class to an instance of your theme.
 
@@ -295,10 +324,10 @@ public var sliderBarAlpha: CGFloat
 ```
 The alpha transparency of the bar.
 
-### Responding to Events
+### 🔔 Responding to Events
 
-To respond to PlayerControl events, you can implement the 
-`PlayerControlDelegate` in your controller. This will provide you with the 
+To respond to PlayerControl events, you can implement the
+`PlayerControlDelegate` in your controller. This will provide you with the
 following callback events:
 
 ```swift
@@ -320,10 +349,12 @@ the **new** time interval.
 
 Don't forget to set your class as the delegate.
 
-## Author
+---
 
-Rebecca Peck
+## 👩‍💻 Author
 
-## License
+**Rebecca Peck**
 
-MIT
+## 📄 License
+
+MIT - see [LICENSE](LICENSE) for details
