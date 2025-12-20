@@ -56,8 +56,17 @@ github "rebeccathedev/PlayerControls"
 
 ### Manual
 
-Alternatively, download the source, build the framework and drag the product
-into your project.
+Download the source and build using the provided Makefile:
+
+```bash
+git clone https://github.com/rebeccathedev/PlayerControls.git
+cd PlayerControls
+make build
+```
+
+The built framework will be in `build/DerivedData/Build/Products/Release/PlayerControls.framework`. Drag it into your Xcode project.
+
+You can also use `make help` to see all available build targets.
 
 ## 🎬 Demo
 
