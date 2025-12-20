@@ -29,6 +29,7 @@
 import Foundation
 import Cocoa
 
+@MainActor
 public class PlayerControl: NSVisualEffectView {
     
     /// Provides a delegate for messages.
@@ -38,14 +39,14 @@ public class PlayerControl: NSVisualEffectView {
     /// TimeInterval type.
     public var totalTime: TimeInterval? = nil {
         didSet {
-            if totalTime! < 0 {
+            guard let totalTime, totalTime >= 0 else {
                 self.totalTime = 0
                 return
             }
             
-            self.slider.maxValue = totalTime!
+            self.slider.maxValue = totalTime
             self.slider.isEnabled = true
-            self.remainingTimeLabel.stringValue = totalTime!.string()
+            self.remainingTimeLabel.stringValue = totalTime.string()
         }
     }
     
@@ -54,15 +55,16 @@ public class PlayerControl: NSVisualEffectView {
     public var currentTime: TimeInterval = 0 {
         didSet {
             guard let tt = self.totalTime else { return }
-            if currentTime < 0 {
-                self.currentTime = 0
-                return
+            let clampedTime = max(0, currentTime)
+            
+            if tt >= clampedTime {
+                self.slider.doubleValue = clampedTime
+                self.currentTimeLabel.stringValue = clampedTime.string()
+                self.remainingTimeLabel.stringValue = (tt - clampedTime).string()
             }
             
-            if tt >= currentTime {
-                self.slider.doubleValue = self.currentTime
-                self.currentTimeLabel.stringValue = self.currentTime.string()
-                self.remainingTimeLabel.stringValue = (tt - self.currentTime).string()
+            if clampedTime != currentTime {
+                self.currentTime = clampedTime
             }
         }
     }
@@ -78,17 +80,12 @@ public class PlayerControl: NSVisualEffectView {
     /// 0.0 and 1.0.
     public var transferred: CGFloat = 0 {
         didSet {
-            if transferred < 0 {
-                transferred = 0
-                return
-            }
+            let clampedTransferred = max(0, min(1, transferred))
+            self.slider.transferred = clampedTransferred
             
-            if transferred > 1 {
-                transferred = 0
-                return
+            if clampedTransferred != transferred {
+                transferred = clampedTransferred
             }
-            
-            self.slider.transferred = self.transferred
         }
     }
     
@@ -463,13 +460,13 @@ public class PlayerControl: NSVisualEffectView {
         
         if self.hideOnMouseOut {
             self.setTrackingArea()
-            NotificationCenter.default.addObserver(forName: NSView.frameDidChangeNotification, object: self, queue: nil) { (notificiation) in
-                self.setTrackingArea()
+            NotificationCenter.default.addObserver(forName: NSView.frameDidChangeNotification, object: self, queue: nil) { [weak self] _ in
+                self?.setTrackingArea()
             }
             
             if self.hideAfter > 0 {
-                self.hideTimer = Timer.scheduledTimer(withTimeInterval: self.hideAfter, repeats: false) { timer in
-                    self.isHidden = true
+                self.hideTimer = Timer.scheduledTimer(withTimeInterval: self.hideAfter, repeats: false) { [weak self] _ in
+                    self?.isHidden = true
                 }
             }
         } else {
@@ -501,33 +498,24 @@ public class PlayerControl: NSVisualEffectView {
     }
     
     @objc func jump(_ sender: PlayerControlButton) {
-        if let tt = self.totalTime {
-            if sender == self.jumpBackButton {
-                self.currentTime = self.currentTime - self.jumpBackwardTimeInterval
-            }
-            
-            if sender == self.jumpForwardButton {
-                self.currentTime = self.currentTime + self.jumpForwardTimeInternal
-            }
-            
-            if sender == self.fastForwardButton {
-                self.currentTime = tt
-            }
-            
-            if sender == self.rewindButton {
-                self.currentTime = 0
-            }
-            
-            if self.currentTime < 0 {
-                self.currentTime = 0
-            }
-            
-            if self.currentTime > self.totalTime! {
-                self.currentTime = self.totalTime!
-            }
-            
-            self.delegate?.timeChanged(self, time: self.currentTime)
+        guard let tt = self.totalTime else { return }
+        
+        switch sender {
+        case self.jumpBackButton:
+            self.currentTime = self.currentTime - self.jumpBackwardTimeInterval
+        case self.jumpForwardButton:
+            self.currentTime = self.currentTime + self.jumpForwardTimeInternal
+        case self.fastForwardButton:
+            self.currentTime = tt
+        case self.rewindButton:
+            self.currentTime = 0
+        default:
+            break
         }
+        
+        // Clamp between 0 and totalTime
+        self.currentTime = max(0, min(tt, self.currentTime))
+        self.delegate?.timeChanged(self, time: self.currentTime)
     }
 
     private func setupButton(button: PlayerControlButton, image: NSImage?) {

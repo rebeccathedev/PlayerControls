@@ -29,6 +29,7 @@
 import Foundation
 import Cocoa
 
+@MainActor
 class PlayerControlButton: NSButton {
     var theme: PlayerControlTheme = Dark() {
         didSet {

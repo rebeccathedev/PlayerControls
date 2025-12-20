@@ -29,7 +29,8 @@
 import Foundation
 
 /// A delegate protocol for messages about the Player Controls.
-public protocol PlayerControlDelegate: class {
+@MainActor
+public protocol PlayerControlDelegate: AnyObject {
     
     /// Delegate message sent when the player control status changes.
     ///
@@ -40,7 +41,7 @@ public protocol PlayerControlDelegate: class {
     
     
     /// Delegate method sent when the player time changes. For
-    /// instanc when the user uses the slider or the jump buttons.
+    /// instance when the user uses the slider or the jump buttons.
     ///
     /// - Parameters:
     ///   - playerControl: an instance of PlayerControls

@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:PlayerControls.xcodeproj">
+      location = "self:">
+   </FileRef>
+   <FileRef
+      location = "group:SWIFT_UPGRADE_SUMMARY.md">
    </FileRef>
 </Workspace>
