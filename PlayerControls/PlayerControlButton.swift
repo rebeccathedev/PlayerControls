@@ -27,7 +27,7 @@
 //
 
 import Foundation
-import Cocoa
+import AppKit
 
 @MainActor
 class PlayerControlButton: NSButton {

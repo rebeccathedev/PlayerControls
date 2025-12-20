@@ -27,6 +27,7 @@
 //
 
 import Foundation
+import AppKit
 
 public struct Dark: PlayerControlTheme {
     public var blendingMode: NSVisualEffectView.BlendingMode = .withinWindow

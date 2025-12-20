@@ -27,7 +27,7 @@
 //
 
 import Foundation
-import Cocoa
+import AppKit
 
 extension NSRect {
     public mutating func center(in outerRect: NSRect) {
