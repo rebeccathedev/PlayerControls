@@ -16,13 +16,13 @@ jobs:
       uses: actions/checkout@v4
 
     - name: Build Framework
-      run: xcodebuild -scheme PlayerControls -destination 'platform=macOS' build
+      run: xcodebuild -scheme PlayerControls -destination 'platform=macOS' CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO build
 
     - name: Run Tests
-      run: xcodebuild -scheme PlayerControls -destination 'platform=macOS' test
+      run: xcodebuild -scheme PlayerControls -destination 'platform=macOS' CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO test
 
     - name: Build Demo App
-      run: xcodebuild -scheme PlayerControlsDemo -destination 'platform=macOS' build
+      run: xcodebuild -scheme PlayerControlsDemo -destination 'platform=macOS' CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO build
 
   spm:
     name: Swift Package Manager
