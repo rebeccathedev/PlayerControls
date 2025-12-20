@@ -27,7 +27,7 @@
 //
 
 import Foundation
-import Cocoa
+import AppKit
 
 public protocol PlayerControlTheme {
     var blendingMode: NSVisualEffectView.BlendingMode { get }

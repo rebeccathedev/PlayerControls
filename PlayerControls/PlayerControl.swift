@@ -27,7 +27,7 @@
 //
 
 import Foundation
-import Cocoa
+import AppKit
 
 @MainActor
 public class PlayerControl: NSVisualEffectView {

@@ -27,6 +27,7 @@
 //
 
 import Foundation
+import AppKit
 
 public struct Light: PlayerControlTheme {
     public var blendingMode: NSVisualEffectView.BlendingMode = .withinWindow

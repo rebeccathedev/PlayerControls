@@ -26,7 +26,7 @@
 //  
 //
 
-import Cocoa
+import AppKit
 
 @MainActor
 class PlayerLabel: NSTextField {

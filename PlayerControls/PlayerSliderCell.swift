@@ -27,6 +27,7 @@
 //
 
 import Foundation
+import AppKit
 
 @MainActor
 class PlayerSliderCell: NSSliderCell {
